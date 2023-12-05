@@ -2,6 +2,7 @@
 const mysql = require("mysql");
 const fs = require("node:fs");
 const path = require("path");
+var { executeQuery } = require("./dbUtils");
 
 async function initDB() {
   const queriesArr = [];
@@ -32,9 +33,7 @@ async function initDB() {
         sql += ",";
       }
     });
-
     const query = `
-      DROP TABLE IF EXISTS ${tableName};
       CREATE TABLE IF NOT EXISTS ${tableName} (${sql});
     `;
 
@@ -52,16 +51,17 @@ var con = mysql.createConnection({
   multipleStatements: true,
 });
 
-function executeQuery(sql, values) {
-  con.query(sql, values, function (err, result) {
-    if (err) throw err;
-    console.log("success");
-  });
-}
 async function createTables() {
+  const addForeignKeysSQL = `ALTER TABLE student
+ADD FOREIGN KEY (classroom_id) REFERENCES classroom(id);
+ALTER TABLE admin
+ADD FOREIGN KEY (school_id) REFERENCES school(id);
+ALTER TABLE classroom
+ADD FOREIGN KEY (teacher_id) REFERENCES teacher(id);`;
   const tableCreationQueries = await initDB();
-  Array.from(tableCreationQueries).forEach((query) => {
-    executeQuery(query);
+  tableCreationQueries.forEach(async (query) => {
+     await executeQuery(query);
+     executeQuery(addForeignKeysSQL);
   });
   con.end();
 }
