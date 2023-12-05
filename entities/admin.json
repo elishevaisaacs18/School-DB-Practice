@@ -1,26 +1,25 @@
 {
-    "columns" : 
- [
+  "columns": [
     {
-        "name" : "id",
-        "type" : "INT",
-        "PRIMARY KEY" : true,
-        "AUTO_INCREMENT" : true
+      "name": "id",
+      "type": "INT",
+      "PRIMARY KEY": true,
+      "AUTO_INCREMENT": true
     },
     {
-        "name" : "student_name",
-        "type" : "VARCHAR(255)",
-        "NOT NULL" : true
+      "name": "admin_name",
+      "type": "VARCHAR(255)",
+      "NOT NULL": true
     },
     {
-        "name" : "student_password",
-        "type" : "VARCHAR(255)",
-        "NOT NULL" : true
+      "name": "admin_password",
+      "type": "VARCHAR(255)",
+      "NOT NULL": true
     },
     {
-        "name" : "school_id",
-        "type" : "int",
-        "NOT NULL" : true
+      "name": "school_id",
+      "type": "int",
+      "NOT NULL": true
     }
- ]
+  ]
 }
