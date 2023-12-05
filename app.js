@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/school", schoolRouter);
 // app.use("/classroom", classroomRouter);
 // app.use("/admin", adminRouter);
-// app.use("/teacher", teacherRouter);
+app.use("/teacher", teacherRouter);
 // app.use("/student", studentRouter);
 // app.use("/", indexRouter);
 
