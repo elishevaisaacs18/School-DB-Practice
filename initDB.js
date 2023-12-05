@@ -1,4 +1,3 @@
-// const { query } = require("express");
 const mysql = require("mysql");
 const fs = require("node:fs");
 const path = require("path");
@@ -60,9 +59,10 @@ ALTER TABLE classroom
 ADD FOREIGN KEY (teacher_id) REFERENCES teacher(id);`;
   const tableCreationQueries = await initDB();
   tableCreationQueries.forEach(async (query) => {
-     await executeQuery(query);
-     executeQuery(addForeignKeysSQL);
+    await executeQuery(query);
   });
+  executeQuery(addForeignKeysSQL);
+
   con.end();
 }
 
