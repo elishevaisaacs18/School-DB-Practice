@@ -20,9 +20,9 @@ app.use("/", indexRouter);
 app.use("/school", schoolRouter);
 app.use("/classroom", classroomRouter);
 // app.use("/admin", adminRouter);
-// app.use("/teacher", teacherRouter);
-app.use("/student", studentRouter);
-
+app.use("/teacher", teacherRouter);
+// app.use("/student", studentRouter);
+// app.use("/", indexRouter);
 
 
 module.exports = { app };
