@@ -19,18 +19,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/school", schoolRouter);
-app.use("/classroom", classroomRouter);
-app.use("/admin", adminRouter);
-app.use("/teacher", teacherRouter);
+// app.use("/school", schoolRouter);
+// app.use("/classroom", classroomRouter);
+// app.use("/admin", adminRouter);
+// app.use("/teacher", teacherRouter);
 app.use("/student", studentRouter);
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "z10mz10m",
-  database: "school",
-  multipleStatements: true,
-});
 
-module.exports = { app, con };
+
+module.exports = { app };
