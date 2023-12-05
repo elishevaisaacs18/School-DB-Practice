@@ -1,0 +1,21 @@
+{
+    "columns" : 
+ [
+    {
+        "name" : "id",
+        "type" : "INT",
+        "PRIMARY KEY" : true,
+        "AUTO_INCREMENT" : true
+    },
+    {
+        "name" : "school_name",
+        "type" : "VARCHAR(255)",
+        "NOT NULL" : true
+    },
+    {
+        "name" : "school_code",
+        "type" : "VARCHAR(255)",
+        "NOT NULL" : true
+    }
+ ]
+}
