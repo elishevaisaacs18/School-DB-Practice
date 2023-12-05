@@ -25,4 +25,12 @@ app.use("/admin", adminRouter);
 app.use("/teacher", teacherRouter);
 app.use("/student", studentRouter);
 
-module.exports = app;
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "z10mz10m",
+  database: "school",
+  multipleStatements: true,
+});
+
+module.exports = { app, con };
