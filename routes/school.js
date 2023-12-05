@@ -7,7 +7,20 @@ const schema = Joi.object({
   school_code: Joi.number().integer().min(0).max(10000).required(),
 });
 
-const getAllQuery = "SELECT * FROM school.school";
+const getSchoolAdminQuery = `
+select school_name, admin_name from school.school
+JOIN school.admin
+ON admin.school_id = school.id;
+`;
+
+router.get("/manager", async function (req, res, next) {
+  try {
+    const data = await executeQuery(getSchoolAdminQuery);
+    res.send(data);
+  } catch {
+    res.send("Error Reading DB");
+  }
+});
 
 router.post("/", async function (req, res, next) {
   const { error } = schema.validate(req.body);

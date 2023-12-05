@@ -18,7 +18,21 @@ const schema = Joi.object({
   teacher_id: Joi.number().integer().min(0).max(10000).required(),
 });
 
-const getAllQuery = "SELECT * FROM school.classroom";
+router.get("/:classroomId", async function (req, res, next) {
+  const classroomId = req.params.classroomId;
+  const getClassroomTeacherQuery = `SELECT student.student_name, classroom.id  AS classroom_number, teacher.teacher_name 
+FROM school.student
+JOIN classroom
+ON classroom.id = ${classroomId}
+JOIN teacher 
+ON teacher.id = classroom.teacher_id;`;
+  try {
+    const result = await executeQuery(getClassroomTeacherQuery);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
 
 router.post("/", async function (req, res, next) {
   const { error } = schema.validate(req.body);
