@@ -1,11 +1,23 @@
 const mysql = require("mysql");
-const con = require("./app").con;
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "z10mz10m",
+  database: "school",
+  multipleStatements: true,
+});
 
 function executeQuery(sql, values = []) {
-  con.query(sql, values, function (err, result) {
-    if (err) console.err(err);
-    return result;
+  return new Promise((resolve, reject) => {
+    con.query(sql, values, function (err, result) {
+      if (err) {
+        throw new Error(err);
+      } else {
+        resolve(result);
+      }
+    });
   });
 }
 
-module.exports = executeQuery;
+module.exports = { executeQuery };
